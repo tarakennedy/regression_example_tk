@@ -1,7 +1,8 @@
+# tests.py
 import numpy as np
 from sklearn.linear_model import LinearRegression
 
-def predict_value(x):
+def test_regression():
     # Generate some sample data
     X = np.array([[1], [2], [3], [4], [5]])
     y = np.array([2, 4, 6, 8, 10])
@@ -13,13 +14,8 @@ def predict_value(x):
     model.fit(X, y)
 
     # Predict using the trained model
-    y_pred = model.predict(x)
+    x_new = np.array([[6]])
+    y_pred = model.predict(x_new)
 
-    return y_pred
-
-# Test the regression prediction
-x_new = np.array([[6]])
-predicted_value = predict_value(x_new)
-expected_value = 15.0
-
-assert np.isclose(predicted_value[0], expected_value), "Prediction error"
+    # Check the predicted value
+    assert np.isclose(y_pred[0], 12.0), "Prediction error"
